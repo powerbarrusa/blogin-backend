@@ -1,9 +1,9 @@
 const express = require("express")
 const app = express()
 const port = 3002
-const environment = process.env.NODE_ENV || "development";
-const knexconfig = require("./knexfile.js")[environment];
-const db = require("knex")(knexconfig);
+const environment = process.env.NODE_ENV || "development"
+const knexconfig = require("./knexfile.js")[environment]
+const db = require("knex")(knexconfig)
 
 app.get('/', (req, res, next) => {
   return db('users')
@@ -21,7 +21,7 @@ app.get('/', (req, res, next) => {
   })
   .catch((err) => {
     next(err)
-  });
+  })
 })
 
 app.listen(port, () => console.log(`Porty on port ${port}!`))

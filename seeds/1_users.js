@@ -9,11 +9,11 @@ exports.seed = function(knex, Promise) {
         {username: 'diane', password:'Password01'},
         {username: 'cesar', password:'Password01'},
         {username: 'barr', password:'Password01'}
-      ]);
+      ])
     })
     .then(() => {
       return knex.raw(
         "SELECT setval('users_id_seq', (SELECT MAX(id) FROM users))"
       )
     })
-};
+}
