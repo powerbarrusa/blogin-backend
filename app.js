@@ -44,4 +44,14 @@ app.delete('/:id', (req,res, next) => {
   })
 })
 
+app.put('/:id', (req,res, next) => {
+  knex('blogpost').update(req.body).where('id', req.params.id).returning('*')
+  .then((rows) => {
+    res.send(rows)
+  })
+  .catch((err) => {
+    next(err)
+  })
+})
+
 app.listen(port, () => console.log(`Porty on port ${port}!`))
