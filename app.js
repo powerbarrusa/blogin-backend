@@ -3,7 +3,7 @@ const app = express()
 const port = 3002
 const environment = process.env.NODE_ENV || "development"
 const knexconfig = require("./knexfile.js")[environment]
-const db = require("knex")(knexconfig)
+const knex = require("knex")(knexconfig)
 const dotenv = require("dotenv").config()
 var cors = require('cors')
 const parser = require('body-parser')
@@ -12,10 +12,10 @@ app.use(parser.json())
 app.use(cors())
 
 app.get('/', (req, res, next) => {
-  return db('users')
+  return knex('users')
   .then(users => {
     const result = users.map(user => {
-      return db('blogpost').where({ user_id: user.id })
+      return knex('blogpost').where({ user_id: user.id })
       .then(post => {
         user.posts = post
         return user
@@ -31,7 +31,7 @@ app.get('/', (req, res, next) => {
 })
 
 app.get('/posts', (req, res, next) => {
-  return db('blogpost')
+  return knex('blogpost')
   .then(posts => {
     res.send(posts)
   })
