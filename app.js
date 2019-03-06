@@ -33,7 +33,7 @@ app.get('/', (req, res, next) => {
 })
 
 app.get('/posts', (req, res, next) => {
-  return db('blogpost')
+  return knex('blogpost')
   .then(posts => {
     res.send(posts)
   })
