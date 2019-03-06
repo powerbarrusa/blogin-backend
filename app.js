@@ -5,8 +5,11 @@ const environment = process.env.NODE_ENV || "development"
 const knexconfig = require("./knexfile.js")[environment]
 const db = require("knex")(knexconfig)
 const dotenv = require("dotenv").config()
+var cors = require('cors')
 const parser = require('body-parser')
+
 app.use(parser.json())
+app.use(cors())
 
 app.get('/', (req, res, next) => {
   return db('users')
