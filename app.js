@@ -2,11 +2,13 @@ const express = require("express")
 const app = express()
 const port = process.env.PORT || 3002
 const environment = process.env.NODE_ENV || "development"
-const knexconfig = require("./knexfile.js")[environment]
-const knex = require("knex")(knexconfig)
+const config = require("./knexfile.js")[environment]
+const knex = require("knex")(config)
 const dotenv = require("dotenv").config()
 var cors = require('cors')
 const parser = require('body-parser')
+
+app.use(express.static('public'))
 
 app.use(parser.json())
 app.use(cors())

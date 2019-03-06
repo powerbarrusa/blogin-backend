@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node app.js"
+    "build": "node app.js",
+    "heroku-postbuild": "echo Skip build on Heroku"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,6 @@
     "nodemon": "^1.18.10",
     "pg": "^7.8.1",
     "postgresql": "0.0.1"
-  }
+  },
+  "heroku-run-build-script": true
 }
