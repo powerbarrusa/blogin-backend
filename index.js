@@ -33,11 +33,7 @@ app.get('/', (req, res, next) => {
 })
 
 app.get('/posts', (req, res, next) => {
-<<<<<<< HEAD
-  return db('blogpost')
-=======
   return knex('blogpost')
->>>>>>> 3b62f335dee3a3cce33504ce3db827f4493c7afa
   .then(posts => {
     res.send(posts)
   })
