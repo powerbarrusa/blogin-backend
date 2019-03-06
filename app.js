@@ -4,6 +4,14 @@ const port = 3002
 const environment = process.env.NODE_ENV || "development";
 const knexconfig = require("./knexfile.js")[environment];
 const db = require("knex")(knexconfig);
+var cors = require('cors')
+var bodyParser = require('body-parser')
+const dotenv = require('dotenv').config()
+
+app.use(bodyParser.json())
+app.use(cors())
+
+
 
 app.get('/', (req, res, next) => {
   return db('users')
@@ -45,7 +53,7 @@ app.delete('/:id', (req,res, next) => {
 })
 
 app.put('/:id', (req,res, next) => {
-  knex('blogpost').update(req.body).where('id', req.params.id).returning('*')
+  db('blogpost').update(req.body).where('id', req.params.id).returning('*')
   .then((rows) => {
     res.send(rows)
   })
