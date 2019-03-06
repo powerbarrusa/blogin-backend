@@ -14,7 +14,7 @@ app.get('/', (req, res, next) => {
         user.posts = post
         return user
       })
-    })  
+    })
     return Promise.all(result)
   }).then(data => {
     res.send(data)
@@ -22,6 +22,16 @@ app.get('/', (req, res, next) => {
   .catch((err) => {
     next(err)
   });
+})
+
+app.post('/', (req, res, next) => {
+  db('blogpost').insert(req.body).returning('*')
+  .then((rows) => {
+    res.send(rows)
+  })
+  .catch((err) => {
+    next(err)
+  })
 })
 
 app.listen(port, () => console.log(`Porty on port ${port}!`))
