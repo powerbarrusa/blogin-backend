@@ -24,4 +24,11 @@ app.get('/', (req, res, next) => {
   })
 })
 
+app.get('/posts', (req, res, next) => {
+  return db('blogpost')
+  .then(posts => {
+    res.send(posts)
+  })
+})
+
 app.listen(port, () => console.log(`Porty on port ${port}!`))
