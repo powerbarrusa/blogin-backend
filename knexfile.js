@@ -1,6 +1,6 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/blogin-backend'
+    connection: process.env.DATABASE_URL || 'postgres://localhost/blogin-backend'
   },
 };
