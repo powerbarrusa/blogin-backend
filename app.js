@@ -34,4 +34,14 @@ app.post('/', (req, res, next) => {
   })
 })
 
+app.delete('/:id', (req,res, next) => {
+  db('blogpost').where('id', req.params.id).del().returning('*')
+  .then((rows) => {
+    res.send(rows)
+  })
+  .catch((err) => {
+    next(err)
+  })
+})
+
 app.listen(port, () => console.log(`Porty on port ${port}!`))
