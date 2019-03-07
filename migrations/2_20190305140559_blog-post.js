@@ -9,10 +9,10 @@ exports.up = function(knex, Promise) {
     .references('id')
     .inTable('users')
     .onDelete('CASCADE')
-    .index();
+    .index()
   })
-};
+}
 
 exports.down = function(knex, Promise) {
   return knex.schema.dropTable('blogpost')
-};
+}
